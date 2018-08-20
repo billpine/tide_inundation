@@ -40,7 +40,7 @@ cols<- c("Predicted Tidal Height"=  "#0072B2","Target"="black", "Target +3"="#D5
 
 ggplot(data = dat, aes(x = DateTime, y = TideHeight_NAVD_ft)) +
   
-  geom_line(aes(color= "Predicted Tidal Height"), size =1.2) + #<- wanted to add this as part of the legend
+  geom_line(aes(color= "Predicted Tidal Height"), size =1.2, linetype=1) + #<- wanted to add this as part of the legend
   
   #Adding the day and every 4 hours, with breaks = date_breaks(), for the time in the x-axis legend
   scale_x_datetime(name = "August 21-24, 2018", #<- can be in labs(), also, but fine here, since we need to use scale_x_dateime anyways
@@ -57,13 +57,16 @@ ggplot(data = dat, aes(x = DateTime, y = TideHeight_NAVD_ft)) +
   geom_hline(aes(color = "Refrigerator",yintercept = -0.7),size=1.3, linetype = 1) +
   
   #Rearranged the scale_color_manual, to show the legend in the order of the lines shown in "breaks=c()" instead of in alpahebtical order (which is the default)
-scale_color_manual(values =cols, breaks = c("Predicted Tidal Height","Refrigerator","Target +3","Target", "Target -6")) +
+  scale_color_manual(values =cols, breaks = c("Predicted Tidal Height","Refrigerator","Target +3","Target", "Target -6"),guide= 'legend') +
+  
+  guides(colour = guide_legend(override.aes = list(linetype=c(1,1,3,2,3))))+
+  
  
   #Added labs() and removed ggtitle  and scale_y_continuous (this is more for y-axis control such as using limits=c(start,end)), so I can rename the legend in color = (legend title) 
-  labs(main= "Cedar Key", ylab= "Tide Height NAVD (ft)", color= "Line Types") +
+  labs(main= "Cedar Key", ylab= "Tide Height NAVD (ft)", color= "Tidal Lines") +
 
   #Added some themes, can change legend to "top", "bottom", and "left" if desired
- theme(legend.position=("right"),
+ theme(legend.position=("top"),
        panel.border = element_rect(color = "black", size = 1, fill = NA, linetype="solid"),
        axis.text.x = element_text(angle = 90, hjust = 1)) #<- to make the a-axis ticks 90 degrees
 
