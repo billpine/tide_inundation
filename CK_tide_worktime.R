@@ -1,7 +1,7 @@
 #an exercise to plot the tides in CK over a week using the reference
 #point  from Peter as far as what tidal height he wants to work below
 
-#code is by the wizard Ben Tok Kim using small pieces from bp
+#code is by the wizard Ben Toh using small pieces from bp
 
 # install.packages('rtide')
 # install the package on your computer
