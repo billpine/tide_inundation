@@ -144,3 +144,6 @@ clean_df$sun_perc<-round(clean_df$sun_perc,digits=2)
 #now ordering the columns as we are interested
 final<-clean_df[c("start_date","start_time", "weekday","ampm","start_navd_ft","stop_navd_ft","length_min","mins_sun","sun_perc")]
 
+write.table(final,file="C:\\Users\\Owner\\Documents\\Git\\tide_inundation\\output\\work_time.txt", sep = ",", quote = FALSE, row.names = F)
+
+
